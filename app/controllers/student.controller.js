@@ -1,6 +1,6 @@
 const Student = require('../models/student.model.js');
 
-// Create and Save a new Note
+// Create and Save a new student profile
 exports.create = (req, res) => {
 
     // Validate request
@@ -15,25 +15,25 @@ exports.create = (req, res) => {
         });
     }
 
-    // Create a new collection
+    // Create a new student profile
     const note = new Student({
         name: req.body.name || "student", 
         class: req.body.class
     });
 
-    // Save collection in the database
+    // Save profile in the database
     note.save()
     .then(data => {
         res.send(data);
     }).catch(err => {
         res.status(500).send({
-            message: err.message || "Some error occurred while creating the Note."
+            message: err.message || "Error occurred while creating the student profile."
         });
     });
 
 };
 
-// Retrieve and return all notes from the database.
+// Retrieve and return all student profiles from the database.
 exports.findAll = (req, res) => {
 
     API.find()
@@ -41,13 +41,13 @@ exports.findAll = (req, res) => {
         res.send(profile);
     }).catch(err => {
         res.status(500).send({
-            message: err.message || "Some error occurred while retrieving notes."
+            message: err.message || "Error occurred while retrieving the student profiles."
         });
     });
 
 };
 
-// Find a single profile with a apiId
+// Find a single profile with a ID
 exports.findOne = (req, res) => {
 
     API.findById(req.params.apiId)
@@ -65,7 +65,7 @@ exports.findOne = (req, res) => {
             });                
         }
         return res.status(500).send({
-            message: "Error retrieving note with id " + req.params.apiId
+            message: "Error retrieving profile with id " + req.params.apiId
         });
     });
 

@@ -1,18 +1,18 @@
 module.exports = (app) => {
     const api = require('../controllers/api.controller.js');
 
-    // Create a new collection
+    // Create a new profile
     app.post('/api', api.create);
 
-    // Retrieve all collections
+    // Retrieve all profiles
     app.get('/api', api.findAll);
 
-    // Retrieve a single collection apiId
+    // Retrieve a single profile by ID
     app.get('/api/:apiId', api.findOne);
 
-    // Update a collection with apiId
+    // Update a profile with ID
     app.put('/api/:apiId', api.update);
 
-    // Delete a collection with apiId
+    // Delete a profile with ID
     app.delete('/api/:apiId', api.delete);
 }

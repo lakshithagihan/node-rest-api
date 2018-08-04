@@ -1,6 +1,6 @@
 const API = require('../models/api.model.js');
 
-// Create and Save a new Note
+// Create and Save a new profile
 exports.create = (req, res) => {
 
     // Validate request
@@ -10,25 +10,25 @@ exports.create = (req, res) => {
         });
     }
 
-    // Create a new collection
+    // Create a new profile
     const note = new API({
         title: req.body.title || "user", 
         content: req.body.content
     });
 
-    // Save collection in the database
+    // Save profile in the database
     note.save()
     .then(data => {
         res.send(data);
     }).catch(err => {
         res.status(500).send({
-            message: err.message || "Some error occurred while creating the Note."
+            message: err.message || "Error occurred while creating the profile."
         });
     });
 
 };
 
-// Retrieve and return all notes from the database.
+// Retrieve and return all profiles from the database.
 exports.findAll = (req, res) => {
 
     API.find()
@@ -36,13 +36,13 @@ exports.findAll = (req, res) => {
         res.send(profile);
     }).catch(err => {
         res.status(500).send({
-            message: err.message || "Some error occurred while retrieving notes."
+            message: err.message || "Error occurred while retrieving the profiles."
         });
     });
 
 };
 
-// Find a single profile with a apiId
+// Find a single profile with a ID
 exports.findOne = (req, res) => {
 
     API.findById(req.params.apiId)
@@ -60,18 +60,18 @@ exports.findOne = (req, res) => {
             });                
         }
         return res.status(500).send({
-            message: "Error retrieving note with id " + req.params.apiId
+            message: "Error retrieving profile with id " + req.params.apiId
         });
     });
 
 };
 
-// Update a note identified by the apiId in the request
+// Update profile identified by the ID in the request
 exports.update = (req, res) => {
 
 };
 
-// Delete a note with the specified noteId in the request
+// Delete profile with the specified ID in the request
 exports.delete = (req, res) => {
 
 };
